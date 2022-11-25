@@ -8,20 +8,10 @@ function postText(value){
 
 const scriptsInEvents = {
 
-		async Gameset_Event3_Act7(runtime, localVars)
-		{
-			postText(runtime.globalVars.FinalScore)
-		},
-
-		async Gameset_Event4_Act5(runtime, localVars)
-		{
-			postText(runtime.globalVars.FinalScore)
-		},
-
-		async Gameset_Event13_Act4(runtime, localVars)
-		{
-			postText(runtime.globalVars.FinalScore)
-		}
+	async Gameset_Event23_Act2(runtime, localVars)
+	{
+		
+	}
 
 };
 
