@@ -8,7 +8,7 @@ function postText(value){
 
 const scriptsInEvents = {
 
-	async Gameset_Event23_Act2(runtime, localVars)
+	async Gameset_Event22_Act2(runtime, localVars)
 	{
 		
 	}

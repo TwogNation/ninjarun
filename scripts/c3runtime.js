@@ -4113,9 +4113,11 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.wrap,
 		C3.Behaviors.Rotate,
 		C3.Plugins.System.Cnds.OnLayoutStart,
+		C3.Plugins.System.Cnds.CompareVar,
+		C3.Plugins.System.Acts.SetVar,
+		C3.Plugins.Audio.Acts.Play,
 		C3.Plugins.System.Acts.SetGroupActive,
 		C3.Plugins.System.Acts.SetTimescale,
-		C3.Plugins.System.Acts.SetVar,
 		C3.Plugins.System.Exps.random,
 		C3.Plugins.Sprite.Acts.SetY,
 		C3.Plugins.Sprite.Acts.SetPos,
@@ -4143,14 +4145,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.Fade.Cnds.OnFadeOutEnd,
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Spritefont2.Acts.SetText,
-		C3.Plugins.System.Cnds.CompareVar,
-		C3.ScriptsInEvents.Gameset_Event23_Act2,
+		C3.Plugins.System.Acts.GoToLayout,
+		C3.ScriptsInEvents.Gameset_Event22_Act2,
 		C3.Plugins.System.Cnds.IsGroupActive,
-		C3.Plugins.Audio.Acts.Play,
 		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.Sprite.Cnds.OnDestroyed,
-		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.Browser.Acts.GoToURL,
 		C3.Plugins.System.Acts.RestartLayout,
 		C3.Plugins.System.Cnds.Else,
@@ -4217,7 +4217,9 @@ self.C3_JsPropNameTable = [
 	{Pause: 0},
 	{Coins: 0},
 	{Score: 0},
-	{Distances: 0}
+	{Distances: 0},
+	{postScore: 0},
+	{postCoins: 0}
 ];
 }
 
@@ -4318,9 +4320,10 @@ function or(l, r)
 }
 
 self.C3_ExpressionFuncs = [
-		() => "Menu",
-		() => 1,
 		() => 0,
+		() => 1,
+		() => "Melody",
+		() => "Menu",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0(0, 3);
@@ -4331,20 +4334,14 @@ self.C3_ExpressionFuncs = [
 		() => 1144,
 		() => 670,
 		() => 1230,
-		() => 20,
+		() => 45,
 		() => 1.2,
-		() => 40,
+		() => 95,
 		() => 1.4,
-		() => 60,
+		() => 130,
 		() => 1.6,
-		() => 80,
-		() => 1.8,
-		() => 100,
+		() => 195,
 		() => 2,
-		() => 120,
-		() => 2.2,
-		() => 140,
-		() => 2.4,
 		() => "Jump",
 		() => "Distances",
 		() => 0.5,
@@ -4365,20 +4362,20 @@ self.C3_ExpressionFuncs = [
 			const v0 = p._GetNode(0).GetVar();
 			return () => v0.GetValue();
 		},
+		() => "",
+		() => 500,
 		() => "Sound",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => f0(80, 1200);
 		},
 		() => -100,
-		() => "",
 		() => 3,
 		() => -193,
 		() => 490,
 		() => "Touch",
 		() => "http://codecanyon.net/user/muscle-ss/portfolio",
 		() => "http://codecanyon.net/user/muscle-ss",
-		() => "Melody",
 		() => "PauseON",
 		() => "PauseOFF",
 		() => "OFF",
