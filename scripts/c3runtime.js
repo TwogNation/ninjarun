@@ -4136,10 +4136,12 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.StopAnim,
 		C3.Behaviors.Fade.Acts.StartFade,
 		C3.Plugins.System.Acts.Wait,
+		C3.Plugins.System.Acts.AddVar,
+		C3.ScriptsInEvents.Gameset_Event11_Act7,
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Sprite.Cnds.OnAnimFinished,
-		C3.Plugins.System.Acts.AddVar,
+		C3.ScriptsInEvents.Gameset_Event14_Act4,
 		C3.Behaviors.Bullet.Acts.SetEnabled,
 		C3.Behaviors.Bullet.Acts.SetAngleOfMotion,
 		C3.Behaviors.Fade.Cnds.OnFadeOutEnd,
@@ -4345,6 +4347,10 @@ self.C3_ExpressionFuncs = [
 		() => "Jump",
 		() => "Distances",
 		() => 0.5,
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => v0.GetValue();
+		},
 		() => 360,
 		() => 430,
 		() => 570,
@@ -4358,10 +4364,6 @@ self.C3_ExpressionFuncs = [
 		() => 0.8,
 		() => 25,
 		() => 270,
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => v0.GetValue();
-		},
 		() => "",
 		() => 500,
 		() => "Sound",
