@@ -8,7 +8,7 @@ function postText(value){
 
 const scriptsInEvents = {
 
-	async Gameset_Event1_Act2(runtime, localVars)
+	async Gameset_Event1_Act1(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.onMessage = (event) => {
 			if (event.data.startsWith('s:')){
@@ -21,27 +21,37 @@ const scriptsInEvents = {
 		
 	},
 
-	async Gameset_Event11_Act7(runtime, localVars)
+	async Gameset_Event9_Act7(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.close();
 	},
 
-	async Gameset_Event14_Act4(runtime, localVars)
+	async Gameset_Event9_Act8(runtime, localVars)
+	{
+		window.parent.postMessage("WebSocketClosed", "*");
+	},
+
+	async Gameset_Event12_Act4(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.close();
 	},
 
-	async Gameset_Event15_Act3(runtime, localVars)
+	async Gameset_Event12_Act5(runtime, localVars)
+	{
+		window.parent.postMessage("WebSocketClosed", "*");
+	},
+
+	async Gameset_Event13_Act3(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.send("s:25")
 	},
 
-	async Gameset_Event21_Act3(runtime, localVars)
+	async Gameset_Event19_Act3(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.send("s:500")
 	},
 
-	async Gameset_Event22_Act2(runtime, localVars)
+	async Gameset_Event20_Act2(runtime, localVars)
 	{
 		
 	},
@@ -51,18 +61,43 @@ const scriptsInEvents = {
 		const queryParams = new URLSearchParams(window.location.search)
 		const token = queryParams.get('token');
 		const gameId = queryParams.get('gameId');
+		console.log("clicked")
+					const textInstance = runtime.objects.ErrorText.getFirstInstance()
+					textInstance.text = "PLEASE WAIT..."
+					const button = runtime.objects.BtnPlay.getFirstInstance();
+					button.destroy(); 
+		// Add a variable to track if the WebSocket is already connected or in the process of connecting
+		let isWebSocketConnectingOrConnected = false; 
+					
+		try {
+		    // Check if the WebSocket is already connected or in the process of connecting
+		    if (!isWebSocketConnectingOrConnected) {
+		        const webSocket = new WebSocket('wss://arcade.shadow.legacyarcade.com/ws', [token, gameId]);
+		        runtime.globalVars.webSocket = webSocket;
 		
-		try{
-			const webSocket = new WebSocket('wss://arcade.stage.legacyarcade.com/ws', [token,gameId]);
-			runtime.globalVars.webSocket = webSocket;
-			webSocket.onopen = (event) =>{
-				runtime.callFunction('startendless');
-			};
-		}catch(e){
-			const textInstance = runtime.objects.ErrorText.getFirstInstance()
-			textInstance.text = "ERROR CONNECTING"
-			console.log("error connecting to server", e)
+		        webSocket.onopen = (event) => {
+		            isWebSocketConnectingOrConnected = true;  // Set the flag to true when connection is established
+		            runtime.callFunction('startendless');
+		        };
+		
+		        webSocket.onclose = (event) => {
+		            isWebSocketConnectingOrConnected = false; // Reset the flag when the connection is closed
+		        };
+		
+		        webSocket.onerror = (event) => {
+		            isWebSocketConnectingOrConnected = false; // Reset the flag on error
+		        };
+		
+		        runtime.globalVars.playable = 1;
+		    }
+		} catch (e) {
+		    const textInstance = runtime.objects.ErrorText.getFirstInstance();
+		    textInstance.text = "ERROR CONNECTING";
+		    console.log("error connecting to server", e);
 		}
+		
+		
+		
 		
 	}
 
