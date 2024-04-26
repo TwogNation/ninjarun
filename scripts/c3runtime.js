@@ -4750,14 +4750,15 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Acts.SetVar,
 		C3.Plugins.Audio.Acts.Play,
 		C3.Plugins.System.Acts.SetGroupActive,
-		C3.Plugins.System.Acts.SetTimescale,
 		C3.Plugins.System.Exps.random,
 		C3.Plugins.Sprite.Acts.SetY,
 		C3.Plugins.Sprite.Acts.SetPos,
 		C3.Plugins.Spritefont2.Acts.SetY,
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.Spritefont2.Acts.SetVisible,
+		C3.Plugins.System.Acts.SetTimescale,
 		C3.Plugins.System.Cnds.CompareTime,
+		C3.Plugins.System.Cnds.Compare,
 		C3.Plugins.System.Acts.SetObjectTimescale,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Behaviors.Platform.Acts.SimulateControl,
@@ -4859,7 +4860,8 @@ self.C3_JsPropNameTable = [
 	{Score: 0},
 	{Distances: 0},
 	{postScore: 0},
-	{postCoins: 0}
+	{postCoins: 0},
+	{PlayerSpeed: 0}
 ];
 
 self.InstanceType = {
@@ -5023,6 +5025,10 @@ self.C3_ExpressionFuncs = [
 		() => 1230,
 		() => 3,
 		() => 15,
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => v0.GetValue();
+		},
 		() => 1.2,
 		() => 30,
 		() => 1.6,
@@ -5031,10 +5037,6 @@ self.C3_ExpressionFuncs = [
 		() => "Jump",
 		() => "Distances",
 		() => 0.5,
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => v0.GetValue();
-		},
 		() => 360,
 		() => 372,
 		() => 298,
