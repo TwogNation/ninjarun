@@ -21,37 +21,37 @@ const scriptsInEvents = {
 		
 	},
 
-	async Gameset_Event9_Act7(runtime, localVars)
+	async Gameset_Event10_Act7(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.close();
 	},
 
-	async Gameset_Event9_Act8(runtime, localVars)
+	async Gameset_Event10_Act8(runtime, localVars)
 	{
 		window.parent.postMessage("WebSocketClosed", "*");
 	},
 
-	async Gameset_Event12_Act4(runtime, localVars)
+	async Gameset_Event13_Act4(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.close();
 	},
 
-	async Gameset_Event12_Act5(runtime, localVars)
+	async Gameset_Event13_Act5(runtime, localVars)
 	{
 		window.parent.postMessage("WebSocketClosed", "*");
 	},
 
-	async Gameset_Event13_Act3(runtime, localVars)
+	async Gameset_Event14_Act3(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.send("s:25")
 	},
 
-	async Gameset_Event19_Act3(runtime, localVars)
+	async Gameset_Event20_Act3(runtime, localVars)
 	{
 		runtime.globalVars.webSocket.send("s:500")
 	},
 
-	async Gameset_Event20_Act2(runtime, localVars)
+	async Gameset_Event21_Act2(runtime, localVars)
 	{
 		
 	},
