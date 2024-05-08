@@ -4853,6 +4853,7 @@ self.C3_JsPropNameTable = [
 	{Loading: 0},
 	{LoadnigText: 0},
 	{ErrorText: 0},
+	{version: 0},
 	{Melody: 0},
 	{Sound: 0},
 	{Speed: 0},
@@ -4910,7 +4911,8 @@ self.InstanceType = {
 	Background: class extends self.ISpriteInstance {},
 	Loading: class extends self.ISpriteInstance {},
 	LoadnigText: class extends self.ISpriteInstance {},
-	ErrorText: class extends self.ITextInstance {}
+	ErrorText: class extends self.ITextInstance {},
+	version: class extends self.ITextInstance {}
 }
 }
 
