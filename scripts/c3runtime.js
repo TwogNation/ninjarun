@@ -4748,8 +4748,10 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Cnds.CompareVar,
 		C3.ScriptsInEvents.Gameset_Event1_Act1,
 		C3.Plugins.System.Acts.SetVar,
+		C3.Plugins.System.Acts.SetObjectTimescale,
 		C3.Plugins.Audio.Acts.Play,
 		C3.Plugins.System.Acts.SetGroupActive,
+		C3.Plugins.System.Acts.SetBoolVar,
 		C3.Plugins.System.Exps.random,
 		C3.Plugins.Sprite.Acts.SetY,
 		C3.Plugins.Sprite.Acts.SetPos,
@@ -4757,9 +4759,9 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Sprite.Acts.SetVisible,
 		C3.Plugins.Spritefont2.Acts.SetVisible,
 		C3.Plugins.System.Acts.SetTimescale,
-		C3.Plugins.System.Cnds.CompareTime,
+		C3.Plugins.System.Cnds.Every,
+		C3.Plugins.System.Cnds.CompareBoolVar,
 		C3.Plugins.System.Cnds.Compare,
-		C3.Plugins.System.Acts.SetObjectTimescale,
 		C3.Plugins.Touch.Cnds.OnTouchObject,
 		C3.Behaviors.Platform.Acts.SimulateControl,
 		C3.Plugins.Sprite.Acts.SetAnim,
@@ -4771,24 +4773,23 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.Fade.Acts.StartFade,
 		C3.Plugins.System.Acts.Wait,
 		C3.Plugins.System.Acts.AddVar,
-		C3.ScriptsInEvents.Gameset_Event9_Act7,
-		C3.ScriptsInEvents.Gameset_Event9_Act8,
+		C3.ScriptsInEvents.Gameset_Event10_Act7,
+		C3.ScriptsInEvents.Gameset_Event10_Act8,
 		C3.Plugins.Sprite.Acts.SetAnimFrame,
 		C3.Plugins.Sprite.Acts.Destroy,
 		C3.Plugins.Sprite.Cnds.OnAnimFinished,
-		C3.ScriptsInEvents.Gameset_Event12_Act4,
-		C3.ScriptsInEvents.Gameset_Event12_Act5,
-		C3.ScriptsInEvents.Gameset_Event13_Act3,
+		C3.ScriptsInEvents.Gameset_Event13_Act4,
+		C3.ScriptsInEvents.Gameset_Event13_Act5,
+		C3.ScriptsInEvents.Gameset_Event14_Act3,
 		C3.Behaviors.Bullet.Acts.SetEnabled,
 		C3.Behaviors.Bullet.Acts.SetAngleOfMotion,
 		C3.Behaviors.Fade.Cnds.OnFadeOutEnd,
 		C3.Plugins.System.Cnds.EveryTick,
 		C3.Plugins.Spritefont2.Acts.SetText,
-		C3.ScriptsInEvents.Gameset_Event19_Act3,
+		C3.ScriptsInEvents.Gameset_Event20_Act3,
 		C3.Plugins.System.Acts.GoToLayout,
-		C3.ScriptsInEvents.Gameset_Event20_Act2,
+		C3.ScriptsInEvents.Gameset_Event21_Act2,
 		C3.Plugins.System.Cnds.IsGroupActive,
-		C3.Plugins.System.Cnds.Every,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.Sprite.Cnds.OnDestroyed,
 		C3.ScriptsInEvents.Addset_Event27_Act1,
@@ -4852,6 +4853,7 @@ self.C3_JsPropNameTable = [
 	{Loading: 0},
 	{LoadnigText: 0},
 	{ErrorText: 0},
+	{version: 0},
 	{Melody: 0},
 	{Sound: 0},
 	{Speed: 0},
@@ -4860,6 +4862,8 @@ self.C3_JsPropNameTable = [
 	{Score: 0},
 	{Distances: 0},
 	{postScore: 0},
+	{gameStarted: 0},
+	{ninjaSpeedTimer: 0},
 	{postCoins: 0},
 	{PlayerSpeed: 0}
 ];
@@ -4907,7 +4911,8 @@ self.InstanceType = {
 	Background: class extends self.ISpriteInstance {},
 	Loading: class extends self.ISpriteInstance {},
 	LoadnigText: class extends self.ISpriteInstance {},
-	ErrorText: class extends self.ITextInstance {}
+	ErrorText: class extends self.ITextInstance {},
+	version: class extends self.ITextInstance {}
 }
 }
 
@@ -5024,11 +5029,15 @@ self.C3_ExpressionFuncs = [
 		() => 670,
 		() => 1230,
 		() => 3,
-		() => 15,
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => (v0.GetValue() + 1);
+		},
 		p => {
 			const v0 = p._GetNode(0).GetVar();
 			return () => v0.GetValue();
 		},
+		() => 15,
 		() => 1.2,
 		() => 30,
 		() => 1.6,
