@@ -4792,7 +4792,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Cnds.IsGroupActive,
 		C3.Plugins.System.Acts.CreateObject,
 		C3.Plugins.Sprite.Cnds.OnDestroyed,
-		C3.ScriptsInEvents.Addset_Event27_Act1,
+		C3.ScriptsInEvents.Addset_Event26_Act1,
 		C3.Plugins.System.Acts.RestartLayout,
 		C3.Plugins.System.Cnds.Else,
 		C3.Plugins.Audio.Acts.Stop,

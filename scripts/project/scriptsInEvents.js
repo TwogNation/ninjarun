@@ -56,7 +56,7 @@ const scriptsInEvents = {
 		
 	},
 
-	async Addset_Event27_Act1(runtime, localVars)
+	async Addset_Event26_Act1(runtime, localVars)
 	{
 		const queryParams = new URLSearchParams(window.location.search)
 		const token = queryParams.get('token');
